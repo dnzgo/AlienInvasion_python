@@ -10,7 +10,7 @@ def run_game():
 
     screen = pygame.display.set_mode((game_settings.screen_width, game_settings.screen_height)) # creating a frame width, height
 
-    ship = Ship(screen) # make a ship
+    ship = Ship(game_settings, screen) # make a ship
     
     pygame.display.set_caption(game_settings.screen_caption) # set title of screen
 
