@@ -27,9 +27,9 @@ class Ship():
     
     def update(self):
         """Update the ship's position based on the movement flag."""
-        if self.moving_right:
+        if self.moving_right and self.rect.right < self.screen_rect.right: # if moving right and in screen
             self.center += self.game_settings.ship_speed_factor
-        if self.moving_left:
+        if self.moving_left and self.rect.left > 0: # if moving left and in screen
             self.center -= self.game_settings.ship_speed_factor
         # Update rect object from self.center
         self.rect.centerx = self.center
