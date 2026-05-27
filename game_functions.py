@@ -21,9 +21,7 @@ def check_keydown_events(event, game_settings, screen, ship, bullets):
         # Move the ship to the right
         ship.moving_left = True
     if event.key == pygame.K_UP:
-        # Create a new bullet and add it to the bullets group
-        new_bullet = Bullet(game_settings, screen, ship)
-        bullets.add(new_bullet)
+        fire_bullet(game_settings, screen, ship, bullets)
 
 
 def check_keyup_events(event, ship):
@@ -34,9 +32,10 @@ def check_keyup_events(event, ship):
         # stop moving the ship to the left
         ship.moving_left = False
 
-def update_screen(settings, screen, ship, bullets):
+
+def update_screen(game_settings, screen, ship, bullets):
     """Update images on the screen and flip to the new screen."""
-    screen.fill(settings.background_color) # redraw screen each loop iteration
+    screen.fill(game_settings.background_color) # redraw screen each loop iteration
 
      # Redraw all bullets behind ship and aliens
     for bullet in bullets.sprites():
@@ -45,3 +44,21 @@ def update_screen(settings, screen, ship, bullets):
     ship.blitme()
 
     pygame.display.flip() # make last drawn screen visible
+
+
+def update_bullets(bullets):
+    """Update position of bullets and get rid of old bullets."""
+    bullets.update() # Update bullet positions
+
+    # Get rid of bullets that have disappeared
+    for bullet in bullets.copy(): # use a copy of the list in loop because we should not remove an element of looped list/group
+        if bullet.rect.bottom <= 0:
+            bullets.remove(bullet)
+
+
+def fire_bullet(game_settings, screen, ship, bullets):
+    """Fire a bullet if limit not reached yet."""
+    # Create a new bullet and add it to the bullets group
+    if game_settings.bullet_size > len(bullets):
+        new_bullet = Bullet(game_settings, screen, ship)
+        bullets.add(new_bullet) 

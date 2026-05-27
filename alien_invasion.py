@@ -21,8 +21,10 @@ def run_game():
     # main game loop
     while True:
         game_functions.check_events(game_settings, screen, ship, bullets) # check events like keypress and mouse events
+        
         ship.update()
-        bullets.update()
+
+        game_functions.update_bullets(bullets)
         game_functions.update_screen(game_settings, screen, ship, bullets) # Update images on the screen and flip to the new screen.
 
 run_game()
