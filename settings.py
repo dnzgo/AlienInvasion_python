@@ -8,10 +8,10 @@ class Settings():
         self.screen_height = 800
         self.background_color = (230, 230, 230)
         self.screen_caption = 'Alien Invasion'
-        self.ship_speed_factor = 1.5
+        self.ship_speed_factor = 1
 
         # bullet settings
-        self.bullet_speed_factor = 1
+        self.bullet_speed_factor = 0.8
         self.bullet_width = 3
         self.bullet_height = 15
         self.bullet_color = (60, 60, 60)

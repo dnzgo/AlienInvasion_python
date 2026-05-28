@@ -1,7 +1,6 @@
 import pygame
 from settings import Settings
 from ship import Ship
-from alien import Alien
 from pygame.sprite import Group # behaves like a list
 import game_functions
 
@@ -14,10 +13,11 @@ def run_game():
 
     ship = Ship(game_settings, screen) # make a ship
 
-    # Make a group to store bullets in
+    # Make  groups to store bullets and aliens in
     bullets = Group()
+    aliens = Group()
     
-    alien = Alien(game_settings, screen)
+    game_functions.create_alien_fleet(game_settings, screen, aliens)
 
     # main game loop
     while True:
@@ -26,6 +26,6 @@ def run_game():
         ship.update()
 
         game_functions.update_bullets(bullets)
-        game_functions.update_screen(game_settings, screen, ship, alien, bullets) # Update images on the screen and flip to the new screen.
+        game_functions.update_screen(game_settings, screen, ship, aliens, bullets) # Update images on the screen and flip to the new screen.
 
 run_game()
