@@ -33,7 +33,7 @@ def check_keyup_events(event, ship):
         ship.moving_left = False
 
 
-def update_screen(game_settings, screen, ship, bullets):
+def update_screen(game_settings, screen, ship, alien, bullets):
     """Update images on the screen and flip to the new screen."""
     screen.fill(game_settings.background_color) # redraw screen each loop iteration
 
@@ -42,6 +42,7 @@ def update_screen(game_settings, screen, ship, bullets):
         bullet.draw_bullet()
     
     ship.blitme()
+    alien.blitme()
 
     pygame.display.flip() # make last drawn screen visible
 
@@ -62,3 +63,4 @@ def fire_bullet(game_settings, screen, ship, bullets):
     if game_settings.bullet_size > len(bullets):
         new_bullet = Bullet(game_settings, screen, ship)
         bullets.add(new_bullet) 
+
