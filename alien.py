@@ -12,7 +12,7 @@ class Alien(Sprite):
 
         #Loading alien image and set rect
         self.image = pygame.image.load('assets/alien.png')
-        self.image = pygame.transform.scale(self.image, (100, 100))
+        self.image = pygame.transform.scale(self.image, (64, 64))
 
         self.rect = self.image.get_rect()
 
@@ -28,3 +28,19 @@ class Alien(Sprite):
         """Draw the alien at its current location."""
         self.screen.blit(self.image, self.rect)
 
+
+    def update(self):
+        """Move the alien right."""
+        self.x += (self.game_settings.alien_speed_factor * self.game_settings.fleet_direction)
+        self.rect.x = self.x
+
+
+    def check_edges(self):
+        """Return True if alien is at edge of screen."""
+        screen_rect = self.screen.get_rect()
+
+        if self.rect.right >= screen_rect.right:
+            return True
+        elif self.rect.left <= 0:
+            return True
+        
